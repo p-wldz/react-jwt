@@ -1,3 +1,3 @@
 module.exports = {
-    'secret': 'supe!!!!rsecret'
+    secret: 'supe!!!!rsecret'
 };

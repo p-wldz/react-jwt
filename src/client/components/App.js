@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
-import '../app.css';
+import WelcomeContainer from "../containers/WelcomeContainer";
+import LoginFormContainer from "../containers/LoginFormContainer";
+import {GetToken, IsLogged} from "../helpers/Auth";
+import axios from "axios";
 
 export default class App extends Component {
-  state = { username: null };
 
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
+  constructor(props)
+  {
+      super(props);
+      if (IsLogged())
+      {
+        this.props.UserLogged(GetToken());
+      }
+
+      axios.get('http://localhost:3000/api/me').then((response) => {
+        console.log("Logged!");
+      }).catch((error) => {
+        console.log(error);
+      });
+
   }
 
   render() {
-    const { username } = this.state;
     return (
-      <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
+      <div className="container">
+          <WelcomeContainer />
+          <LoginFormContainer />
       </div>
     );
   }
