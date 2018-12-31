@@ -10,8 +10,9 @@ Including react-router with protected pages (JWT required).
 
 Has been used previous project with router manager: https://github.com/p-wldz/react-router-manager
 
-Added new function - addictional: **canOpen** with **redirect**
-It is optional property, you can specify callback and determine if a person can open this page.
+Added new function - additional: **canOpen** with **redirect**
+They are optional properties, you can specify callback and determine if a person can open this page.
+After it you can specify where user should be redirected.
 
     [RouteNames.ME]: {
         component: Me,
