@@ -7,7 +7,7 @@ import {createStore} from "redux";
 import connect from "react-redux/es/connect/connect";
 import {UserLogged} from "./actions";
 import axios from "axios";
-import {GetToken} from "./helpers/Auth";
+import Auth from "./helpers/Auth";
 
 const store = createStore(rootReducer);
 const mapStateToProps = state => ({
@@ -21,7 +21,7 @@ const AppConnect = connect(
 )(App);
 
 axios.interceptors.request.use(function(config){
-    const token = GetToken()
+    const token = Auth.GetToken()
     if (token) {
         config.headers.common['Authorization'] = 'Bearer ' + token
     }
