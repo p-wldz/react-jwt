@@ -23,7 +23,6 @@ var api = express.Router();
 
 api.get('/getUsername', (req, res) => res.send({ username: 'test' }));
 api.post('/login', (req, res) => {
-    console.log(req.body);
     User.findOne({username: req.body.username}, function (err, userInfo) {
         if (err) {
             console.log("Error: (/login) " + err);

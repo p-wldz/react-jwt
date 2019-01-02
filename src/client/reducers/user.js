@@ -7,8 +7,11 @@ const user = (state = [], action) => {
             Auth.SaveToken(action.token);
             let userdata = Auth.GetUserData();
             return {...state, name: userdata.name};
+        case 'USER_LOGOUT':
+            Auth.DeleteToken();
+            return {};
         default:
-            return []
+            return {}
     }
 }
 export default user;

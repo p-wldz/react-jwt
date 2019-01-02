@@ -1,6 +1,5 @@
 import React from 'react';
 import Routes from '../routes/routes';
-import RouteNames from '../routes/names';
 import {Link, Redirect, Route} from "react-router-dom";
 import { compile } from 'path-to-regexp';
 export function createLink(name, params) {
@@ -21,8 +20,8 @@ export function createLinkName(name) {
     return Routes[name].name;
 }
 
-export function RouteLink({name, params}) {
-    return <Link {...createLink(name, params)}> {createLinkName(name)} </Link>
+export function RouteLink({name, params, className}) {
+    return <Link className={className} {...createLink(name, params)}> {createLinkName(name)} </Link>
 }
 
 export function RouteName(props) {
