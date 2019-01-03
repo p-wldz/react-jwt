@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {RouteRedirect} from "../helpers/Router";
+import RouteNames from "../routes/names";
 
 export default class LoginForm extends Component {
     constructor(props)
@@ -9,7 +11,8 @@ export default class LoginForm extends Component {
         this.state = {
             username: '',
             password: '',
-            error: false
+            error: false,
+            logged: false
         };
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -31,6 +34,7 @@ export default class LoginForm extends Component {
                 if (data.data != null)
                 {
                     this.props.UserLogged(data.data.token);
+                    this.setState({ logged: true });
                 }
                 else
                 {
@@ -41,6 +45,10 @@ export default class LoginForm extends Component {
     }
     render()
     {
+        if (this.state.logged)
+        {
+            return <RouteRedirect name={RouteNames.HOME} />
+        }
         return <div>
             {(this.state.error) ?
                 <div class="alert alert-warning" role="alert">

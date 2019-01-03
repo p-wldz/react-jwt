@@ -4,7 +4,7 @@ const Auth = {
     SaveToken(token){
         localStorage.setItem('token', token);
     },
-    DeleteToken(token){
+    DeleteToken(){
         localStorage.removeItem('token');
     },
     IsLogged(){
